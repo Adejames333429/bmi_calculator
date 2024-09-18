@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const bottomContainerHeight = 80.0;
+const activeCardColor = Color(0xFF1D1E33);
+const bottomContainerColor = Color(0xFFEB1555);
+
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
@@ -21,12 +25,68 @@ class _InputPageState extends State<InputPage> {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text('Body Text'),
+      body: Column(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: ReusableCard(
+                    colour: activeCardColor,
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    colour: activeCardColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ReusableCard(
+              colour: activeCardColor,
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: ReusableCard(
+                    colour: activeCardColor,
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    colour: activeCardColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: bottomContainerColor,
+            margin: EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bottomContainerHeight,
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  final Color colour;
+  ReusableCard({required this.colour});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        color: colour,
+        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
